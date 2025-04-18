@@ -1,6 +1,6 @@
 import datetime
 from datetime import date
-from typing import Annotated, Callable, Literal
+from typing import Annotated, Literal
 from traincif import CifRecord, Field, CifUnion
 
 

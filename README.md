@@ -1,4 +1,4 @@
-# railcif
+# traincif
 
 Generate parsing code for Common Interchange Format files, commonly used
 when working with UK train data.
