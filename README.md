@@ -288,7 +288,18 @@ A field may be one of:
 - bytes
 - None
 
-> [!INFO]
+To use any other field type, you'll have to specify a transformer:
+
+```py
+class Foo(CifRecord):
+    # like this:
+    start_date: Annotated[date, Field(6, lambda x: datetime.datetime.strptime(byte_string.decode(), "%d%m%Y").date())]
+    
+    # or this:
+    end_date: Annotated[date, Field(6, transform=lambda x: datetime.datetime.strptime(byte_string.decode(), "%d%m%Y").date())]
+```
+
+> [!NOTE]
 > Note that strings are stripped of leading and trailing whitespace, but
 > bytes aren't.
 
