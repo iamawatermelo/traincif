@@ -33,7 +33,6 @@ class CifMeta(type):
     """
     
     def __new__(cls, cls_name: str, bases: tuple[type], attrs: dict[str, Any]) -> object:
-        print(cls_name, bases, attrs)
         cls = super(CifMeta, cls).__new__(cls, cls_name, bases, attrs)
         
         struct_names: list[str] = []
@@ -46,7 +45,6 @@ class CifMeta(type):
         discriminant_value: Any = None
         
         hints = typing.get_type_hints(cls, include_extras=True, globalns=globals())
-        print(hints)
         
         for name, hint in hints.items():
             if name.startswith("__"):
@@ -96,7 +94,6 @@ class CifMeta(type):
             current_pos += field.length
             struct_arg += f"{field.length}s"
         
-        print(struct_arg)
         struct = Struct(struct_arg)
         
         def __init__(self: object, parse: bytes):
